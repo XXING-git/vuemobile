@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// 加载验证插件的初始配置
+import './utils/validation'
+
 import './utils/register-vant.js' // 组件
 import 'normalize.css' // 样式
 import 'amfe-flexible' // REM适配: 动态设置 html 标签字体大小
@@ -25,6 +28,7 @@ Vue
 
 Vue.config.productionTip = false
 
+// 注意：所有初始化的起码都应该在 new Vue 根实例之前
 new Vue({
   router,
   store,
