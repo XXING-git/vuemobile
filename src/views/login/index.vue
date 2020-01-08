@@ -82,8 +82,13 @@ export default {
         console.log(res)
         // 3. 显示倒计时
         this.isCountDownShow = true
+
+        // 3. 请求发送短信验证码
+        // await getSmsCode(mobile)
       } catch (err) {
         console.log(err)
+        // 关闭验证码显示
+        this.isCountDownShow = false
         this.$toast('请勿频繁操作')
       }
     }
@@ -101,6 +106,7 @@ export default {
     }
   }
   .van-cell {
+    height: 45px;
     align-items: center;
   }
 }
