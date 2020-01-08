@@ -5,9 +5,12 @@
 
     <!-- 登录表单 -->
     <van-cell-group>
-      <van-field v-model="user.mobile" clickable left-icon="contact" placeholder="请输入手机号" />
+      <van-field v-model="user.mobile" clickable left-icon="contact" placeholder="请输入手机号">
+        <i class="icon icon-shouji" slot="left-icon"></i>
+      </van-field>
 
       <van-field v-model="user.code" placeholder="请输入验证码" left-icon="smile-o">
+        <i class="icon icon-mima" slot="left-icon"></i>
         <van-button slot="button" size="small" type="primary">发送验证码</van-button>
       </van-field>
     </van-cell-group>
@@ -20,7 +23,7 @@
 </template>
 
 <script>
-import request from '@/utils/request'
+import { login } from '@/api/user'
 
 export default {
   name: 'LoginPage',
@@ -52,16 +55,7 @@ export default {
       // 提示对象.clear()
       // 3. 请求登录
       try {
-        const res = await request({
-          method: 'POST',
-          url: '/app/v1_0/authorizations',
-          // headers: {
-          // axios 会自动添加该请求头
-          // 'Content-Type': 'application/json'
-          // }, // 请求头参数
-          // params: {}, // Query 查询参数
-          data: user // Body 请求体参数
-        })
+        const res = await login(user)
         console.log(res)
         // 提示成功
         this.$toast.success('登录成功')
@@ -83,6 +77,9 @@ export default {
       width: 100%;
       background: #6db4fb;
     }
+  }
+  .van-cell {
+    align-items: center;
   }
 }
 </style>
