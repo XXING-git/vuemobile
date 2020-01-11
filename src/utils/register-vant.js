@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-import { Button, Cell, CellGroup, NavBar, Field, Icon, Toast, CountDown, Tabbar, TabbarItem, Image, Grid, GridItem } from 'vant'
+import { Button, Cell, CellGroup, NavBar, Field, Icon, Toast, CountDown, Tabbar, TabbarItem, Image, Grid, GridItem, Dialog } from 'vant'
 
 Vue.use(Button)
   .use(Cell)
@@ -15,3 +15,4 @@ Vue.use(Button)
   .use(Image)
   .use(Grid)
   .use(GridItem)
+  .use(Dialog)
