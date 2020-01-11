@@ -19,15 +19,14 @@
           errors[0] 获取错误消息
     -->
     <ValidationObserver ref="form">
-      <ValidationProvider name="手机号" rules="required | mobile" v-slot="{ errors }" immediate>
-        <van-field v-model="user.mobile" clearable placeholder="请输入手机号">
+      <ValidationProvider name="手机号" rules="required|mobile" immediate>
+        <van-field v-model="user.mobile" clearable placeholder="请输入手机号" maxlength="11">
           <i class="icon icon-shouji" slot="left-icon"></i>
         </van-field>
-        <span>{{ errors[0] }}</span>
       </ValidationProvider>
 
-      <ValidationProvider name="验证码" rules="required | code" immediate>
-        <van-field v-model="user.code" placeholder="请输入验证码">
+      <ValidationProvider name="验证码" rules="required|code" immediate>
+        <van-field v-model="user.code" placeholder="请输入验证码" maxlength="6">
           <i class="icon icon-mima" slot="left-icon"></i>
           <van-count-down
             v-if="isCountDownShow"
@@ -102,8 +101,11 @@ export default {
       // 提示对象.clear()
       // 3. 请求登录
       try {
-        const res = await login(user)
-        console.log(res)
+        const { data } = await login(user)
+
+        // 将登录成功获取到的用户 token 相关数据存储到 Vuex 容器
+        this.$store.commit('setUser', data.data)
+
         // 提示成功
         this.$toast.success('登录成功')
       } catch (err) {
