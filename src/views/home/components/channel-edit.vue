@@ -79,6 +79,7 @@ export default {
       const { data } = await getAllChannels()
       this.allChannels = data.data.channels
     },
+    // 添加频道
     onAdd (channel) {
       this.userChannels.push(channel)
     }
