@@ -59,6 +59,7 @@
 <script>
 import SearchResult from './components/search-result'
 import { getSuggestions } from '@/api/search'
+import { debounce } from 'lodash'
 
 export default {
   name: 'SearchPage',
@@ -98,7 +99,11 @@ export default {
     onCancel () {
       console.log('onCancel')
     },
-    async onSearchInput () {
+    // debounce 函数
+    // 参数1：函数
+    // 参数2：防抖时间
+    // 返回值：防抖之后的函数，和参数1功能是一样的
+    onSearchInput: debounce(async function () {
       const searchContent = this.searchContent
       if (!searchContent) {
         return
@@ -108,7 +113,18 @@ export default {
       // 2. 将数据添加到组件实例中
       this.suggestions = data.data.options
       // 3. 模板绑定
-    },
+    }, 200),
+    // async onSearchInput () {
+    //   const searchContent = this.searchContent
+    //   if (!searchContent) {
+    //     return
+    //   }
+    //   // 1. 请求获取数据
+    //   const { data } = await getSuggestions(searchContent)
+    //   // 2. 将数据添加到组件实例中
+    //   this.suggestions = data.data.options
+    //   // 3. 模板绑定
+    // },
     highlight (str) {
       const searchContent = this.searchContent
       // /searchContent/ 正则表达式中的一切内容都会当做字符串使用
