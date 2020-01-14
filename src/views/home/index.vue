@@ -41,6 +41,7 @@
       <channel-edit
         :user-channels="userChannels"
         @switch="onChannelSwitch"
+        :active="active"
       />
     </van-popup>
     <!-- /编辑频道 -->
