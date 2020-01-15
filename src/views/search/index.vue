@@ -8,7 +8,7 @@
         show-action
         background="#3296fa"
         @search="onSearch(searchContent)"
-        @cancel="onCancel"
+        @cancel="$router.back()"
         @focus="isSearchResultShow = false"
         @input="onSearchInput"
       />
@@ -101,9 +101,6 @@ export default {
       this.isSearchResultShow = true
     },
 
-    onCancel () {
-      console.log('onCancel')
-    },
     // debounce 函数
     // 参数1：函数
     // 参数2：防抖时间
