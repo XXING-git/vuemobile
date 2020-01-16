@@ -21,6 +21,9 @@ import {
 // 把自己的样式引到第三方组件样式后面
 import './styles/index.less'
 
+// 加载初始日期时间库
+import './utils/datetime'
+
 Vue
   .use(Button)
   .use(Cell)

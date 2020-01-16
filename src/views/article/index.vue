@@ -32,8 +32,8 @@
             :src="article.aut_photo"
           />
           <div class="text">
-            <p class="name">黑马头条号</p>
-            <p class="time">4 小时前</p>
+            <p class="name">{{ article.aut_name }}</p>
+            <p class="time">{{ article.pubdate | relativeTime }}</p>
           </div>
         </div>
         <van-button
