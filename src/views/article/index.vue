@@ -46,7 +46,13 @@
           @click="onFollow"
         >{{ article.is_followed ? '已关注' : '+ 关注' }}</van-button>
       </div>
+      <!-- 文章内容 -->
       <div class="markdown-body" v-html="article.content"></div>
+      <!-- /文章内容 -->
+
+      <!-- 文章评论 -->
+      <article-comment />
+      <!-- /文章评论 -->
     </div>
     <!-- /文章详情 -->
 
@@ -101,6 +107,7 @@ import {
   deleteLike
 } from '@/api/article'
 import { addFollow, deleteFollow } from '@/api/user'
+import ArticleComment from './components/article-comment'
 
 // vuex 模块提供了一些辅助方法，专门用来让我们更方便的获取容器中的数据
 // mapState：映射获取 state 数据
@@ -109,7 +116,10 @@ import { addFollow, deleteFollow } from '@/api/user'
 import { mapState } from 'vuex'
 
 export default {
-  components: {},
+  name: 'ArticlePage',
+  components: {
+    ArticleComment
+  },
   props: {
     articleId: {
       type: String,
